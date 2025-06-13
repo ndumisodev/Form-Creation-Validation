@@ -1,36 +1,50 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('registration-form');
+    const feedbackDiv = document.getElementById('form-feedback');
 
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-const form = document.getElementById('registration-form');
-const feedbackDiv = document.getElementById('form-feedback');
+        const usernameInput = document.getElementById('username');
+        const usernameValue = usernameInput.value.trim();
 
-form.addEventListener('submit', function(event) {
-    event.preventDefault();
+        const emailInput = document.getElementById('email');
+        const emailValue = emailInput.value.trim();
 
-    const usernameInput = document.getElementById('username');
-    const usernameValue = usernameInput.value.trim();
+        const passwordInput = document.getElementById('password');
+        const passwordValue = passwordInput.value.trim();
 
-    const emailInput = document.getElementById('email');
-    const emailValue = emailInput.value.trim();
+        let isValid = true;
+        let messages = [];
 
-    const passwordInput = document.getElementById('password');
-    const passwordValue = passwordInput.value.trim();
+        // Username Validation
+        if (usernameValue.length < 3) {
+            isValid = false;
+            messages.push("Username must be at least 3 characters long.");
+        }
 
-    let isValid = true;
-    let messages = [];
+    
+        if (!emailValue.includes('@') || !emailValue.includes('.')) {
+            isValid = false;
+            messages.push("Please enter a valid email address (must contain '@' and '.').");
+        }
 
-    if (usernameValue.length < 3){
-        isValid = false;
-        messages.push("Username can not be less than 3 charecters")
-    }
+        // Password Validation
+        if (passwordValue.length < 8) {
+            isValid = false;
+            messages.push("Password must be at least 8 characters long.");
+        }
 
-    if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(emailValue) ){
-        isValid = false;
-        messages.push("Please enter a valid email address.")
-    }
-
-    if (passwordValue.length < 8){
-        isValid = false;
-        messages.push("Password must be at least 8 characters long.")
-    }
-
-})
+        // Displaying Feedback
+        feedbackDiv.style.display = "block"; 
+        if (isValid) {
+            feedbackDiv.textContent = "Registration successful!";
+            feedbackDiv.style.color = "#28a745"; 
+            feedbackDiv.style.backgroundColor = "#d4edda"; // Light green background
+        } else {
+            feedbackDiv.innerHTML = messages.join('<br>'); // Join messages with <br>
+            feedbackDiv.style.color = "#dc3545"; // Red for error
+            feedbackDiv.style.backgroundColor = "#f8d7da"; // Light red background
+        }
+    });
+});
