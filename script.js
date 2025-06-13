@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const username = document.getElementById('username').value.trim();
         // const usernameValue = usernameInput.value.trim();
 
-        const emailInput = document.getElementById('email');
-        const emailValue = emailInput.value.trim();
+        const email = document.getElementById('email').value.trim();
+        // const emailValue = emailInput.value.trim();
 
-        const passwordInput = document.getElementById('password');
-        const passwordValue = passwordInput.value.trim();
+        const password = document.getElementById('password').value.trim();
+        // const passwordValue = passwordInput.value.trim();
 
         let isValid = true;
         let messages = [];
@@ -24,13 +24,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
     
-        if (!emailValue.includes('@') || !emailValue.includes('.')) {
+        if (!email.includes('@') || !emailValue.includes('.')) {
             isValid = false;
             messages.push("Please enter a valid email address (must contain '@' and '.').");
         }
 
         // Password Validation
-        if (passwordValue.length < 8) {
+        if (password.length < 8) {
             isValid = false;
             messages.push("Password must be at least 8 characters long.");
         }
