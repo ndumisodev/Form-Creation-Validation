@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     form.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        const usernameInput = document.getElementById('username');
-        const usernameValue = usernameInput.value.trim();
+        const username = document.getElementById('username').value.trim();
+        // const usernameValue = usernameInput.value.trim();
 
         const emailInput = document.getElementById('email');
         const emailValue = emailInput.value.trim();
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let messages = [];
 
         // Username Validation
-        if (usernameValue.length < 3) {
+        if (username.length < 3) {
             isValid = false;
             messages.push("Username must be at least 3 characters long.");
         }
